@@ -287,7 +287,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
       name: r.personName,
       reportedBy: `${r.reporterName}${r.reporterRelation ? ` (${r.reporterRelation})` : ''}`,
       location: r.lastSeenLocation,
-      time: new Date(r.lastSeenTime).toLocaleString(),
+      time: new Date(r.lastSeenTime).toLocaleString('en-GB', { timeZone: 'Europe/London' }),
       // status: (r.status || 'active') as 'active' | 'found' | 'investigating',
       status: (r.status === 'found' ? 'found' : 'active') as 'active' | 'found',
 
