@@ -91,9 +91,10 @@ export default function MissingPersonReport({ onBack }: MissingPersonReportProps
 
     alert('Report submitted successfully!');
     onBack();
-  } catch (err: any) {
+    
+  } catch (err: unknown) {
     console.error(err);
-    alert(err.message);
+    alert(err instanceof Error ? err.message : 'Failed to submit report');
   } finally {
     setIsSubmitting(false);
   }
