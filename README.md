@@ -1,1 +1,1 @@
-Just double click the batch file (.bat). Rest will all be handled ;)
+You won't be able to run this file, it's already hosted :(
