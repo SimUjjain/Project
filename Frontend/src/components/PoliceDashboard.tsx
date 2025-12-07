@@ -1006,6 +1006,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                       <p className="text-sm text-gray-400 mb-1">Date & Time</p>
                       <p className="text-white font-semibold">
                         {new Date(selectedCase.fullData.lastSeenTime).toLocaleString('en-UK', {
+                          timeZone: 'Europe/London',
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric',
@@ -1128,7 +1129,8 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                     <div>
                       <p className="text-gray-400 mb-1">Reported On</p>
                       <p className="text-white">
-                        {new Date(selectedCase.fullData.createdAt).toLocaleString('en-US', {
+                        {new Date(selectedCase.fullData.createdAt).toLocaleString('en-UK', {
+                          timeZone: 'Europe/London',
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric',
@@ -1141,13 +1143,14 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                       <div>
                         <p className="text-gray-400 mb-1">Last Updated</p>
                         <p className="text-white">
-                          {new Date(selectedCase.fullData.updatedAt).toLocaleString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit'
-                          })}
+                          {new Date(selectedCase.fullData.updatedAt).toLocaleString('en-UK', {
+                          timeZone: 'Europe/London',
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
                         </p>
                       </div>
                     )}
