@@ -13,10 +13,9 @@ import {
 
 interface MissingPersonReportProps {
   onBack: () => void;
-  onSuccess?: () => void;
 }
 
-export default function MissingPersonReport({ onBack, onSuccess }: MissingPersonReportProps) {
+export default function MissingPersonReport({ onBack }: MissingPersonReportProps) {
   const [formData, setFormData] = useState({
     reporterName: '',
     reporterPhone: '',
@@ -91,7 +90,7 @@ export default function MissingPersonReport({ onBack, onSuccess }: MissingPerson
     if (!res.ok) throw new Error(data.error || 'Failed to submit report');
 
     alert('Report submitted successfully!');
-    if (onSuccess) onSuccess();
+    onBack();
   } catch (err: any) {
     console.error(err);
     alert(err.message);
