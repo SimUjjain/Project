@@ -92,7 +92,6 @@ export default function MissingPersonReport({ onBack, onSuccess }: MissingPerson
 
     alert('Report submitted successfully!');
     if (onSuccess) onSuccess();
-    window.location.href = '/';
   } catch (err: any) {
     console.error(err);
     alert(err.message);
