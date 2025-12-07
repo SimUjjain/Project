@@ -198,7 +198,12 @@ function App() {
 
 
   if (currentPage === 'missing-report') {
-    return <MissingPersonReport onBack={() => setCurrentPage('user-dashboard')} />;
+    return (
+      <MissingPersonReport
+        onBack={() => setCurrentPage('user-dashboard')}
+        onSuccess={() => setCurrentPage('home')}
+      />
+    );
   }
 
   if (currentPage === 'dashboard') {
