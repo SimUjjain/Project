@@ -1005,7 +1005,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                     <div>
                       <p className="text-sm text-gray-400 mb-1">Date & Time</p>
                       <p className="text-white font-semibold">
-                        {new Date(selectedCase.fullData.lastSeenTime).toLocaleString('en-US', {
+                        {new Date(selectedCase.fullData.lastSeenTime).toLocaleString('en-UK', {
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric',
