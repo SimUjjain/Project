@@ -296,7 +296,16 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
       photos: r.photos || [],
       fullData: r
     }));
-    setCases(formattedCases);
+    const sortedCases = formattedCases.sort((a, b) => {
+      const aDate = new Date(
+        (a.fullData?.createdAt ?? a.fullData?.lastSeenTime ?? '1970-01-01')
+      ).getTime();
+      const bDate = new Date(
+        (b.fullData?.createdAt ?? b.fullData?.lastSeenTime ?? '1970-01-01')
+      ).getTime();
+      return bDate - aDate; // newest first
+    });
+    setCases(sortedCases);
   };
   fetchReports();
 }, [apiUrl]);
@@ -384,10 +393,6 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                          case_.id.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = filterStatus === 'all' || case_.status === filterStatus;
     return matchesSearch && matchesFilter;
-  }).sort((a, b) => {
-    const ad = a.fullData?.createdAt || a.fullData?.lastSeenTime || '';
-    const bd = b.fullData?.createdAt || b.fullData?.lastSeenTime || '';
-    return new Date(bd).getTime() - new Date(ad).getTime();
   });
 
   const getStatusColor = (status: string) => {
@@ -537,15 +542,10 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                       Recent Cases
                     </h3>
                     <div className="space-y-4">
-                  {[...cases]
-                    .filter(c => c.status === 'active')
-                    .sort((a, b) => {
-                      const ad = a.fullData?.createdAt || a.fullData?.lastSeenTime || '';
-                      const bd = b.fullData?.createdAt || b.fullData?.lastSeenTime || '';
-                      return new Date(bd).getTime() - new Date(ad).getTime();
-                    })
-                    .slice(0, 3)
-                    .map((case_) => (
+                      {cases
+                        .filter(c => c.status === 'active')
+                        .slice(0, 3)
+                        .map((case_) => (
                         <div key={case_.id} className="flex items-center gap-4 p-4 bg-white/5 rounded-xl">
                           <div className="flex-shrink-0">
                             {case_.type === 'person' ? (
