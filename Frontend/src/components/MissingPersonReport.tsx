@@ -90,7 +90,8 @@ export default function MissingPersonReport({ onBack }: MissingPersonReportProps
     if (!res.ok) throw new Error(data.error || 'Failed to submit report');
 
     alert('Report submitted successfully!');
-  } catch (err: any) {
+          window.location.href = '/';
+        } catch (err: any) {
     console.error(err);
     alert(err.message);
   } finally {
