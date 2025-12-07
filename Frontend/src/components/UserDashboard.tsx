@@ -129,7 +129,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
           return;
         }
 
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5050';
+        const apiUrl = import.meta.env.VITE_API_URL || 'https://project-backend-k3n8.onrender.com';
         const response = await fetch(`${apiUrl}/api/reports/my-reports`, {
           method: 'GET',
           headers: {
@@ -219,7 +219,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
       <div className="relative z-10">
         {/* Header */}
         <header className="bg-white/10 backdrop-blur-xl border-b border-white/20">
-          <div className="container mx-auto px-6 py-4">
+          <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <motion.button
@@ -266,7 +266,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
           </div>
         </header>
 
-        <div className="container mx-auto px-6 py-8">
+        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
           <motion.div
             initial="initial"
             animate="animate"
@@ -274,8 +274,8 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
             className="space-y-8"
           >
             {/* Quick Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="p-3 rounded-xl bg-red-500/20">
                     <AlertTriangle className="w-6 h-6 text-red-400" />
@@ -287,7 +287,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
                 <div className="text-sm text-gray-300">Active Reports</div>
               </div>
               
-              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="p-3 rounded-xl bg-green-500/20">
                     <CheckCircle className="w-6 h-6 text-green-400" />
@@ -299,7 +299,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
                 <div className="text-sm text-gray-300">Found</div>
               </div>
               
-              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="p-3 rounded-xl bg-blue-500/20">
                     <FileText className="w-6 h-6 text-blue-400" />
@@ -311,7 +311,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
             </div>
 
             {/* Search and Filter */}
-            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1 relative">
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -319,14 +319,14 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                    className="w-full pl-12 pr-4 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                     placeholder="Search your reports..."
                   />
                 </div>
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value as any)}
-                  className="px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                  className="px-4 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                 >
                   <option value="all" className="bg-gray-800">All Status</option>
                   <option value="active" className="bg-gray-800">Active</option>
@@ -365,15 +365,15 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
                   </motion.button>
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {filteredReports.map((report) => (
                     <motion.div
                       key={report.id}
-                      className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all"
+                      className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6 hover:bg-white/15 transition-all"
                       whileHover={{ scale: 1.01 }}
                       layout
                     >
-                      <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-start justify-between mb-3 sm:mb-4">
                         <div className="flex items-center gap-4">
                           <div className="flex-shrink-0">
                             {report.type === 'person' ? (
@@ -407,7 +407,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
                         </div>
                       </div>
                       
-                      <div className="grid md:grid-cols-2 gap-4 mb-4">
+                      <div className="grid md:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
                         <div className="flex items-center gap-2 text-sm text-gray-300">
                           <MapPin className="w-4 h-4 text-yellow-400" />
                           Last seen: {report.lastSeenLocation}
@@ -418,7 +418,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
                         </div>
                       </div>
                       
-                      <p className="text-sm text-gray-400 mb-4">{report.description}</p>
+                      <p className="text-sm text-gray-400 mb-3 sm:mb-4">{report.description}</p>
                       
                       <div className="flex items-center justify-between">
                         <motion.button
@@ -430,7 +430,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
                           <Eye className="w-4 h-4" />
                           View Details
                         </motion.button>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-gray-500 mt-3 sm:mt-0">
                           Report ID: {report.id.substring(0, 8)}...
                         </div>
                       </div>
@@ -458,7 +458,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-gray-900 border border-white/20 rounded-3xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-gray-900 border border-white/20 rounded-3xl p-4 sm:p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
             >
               {/* Modal Header */}
               <div className="flex items-center justify-between mb-6">
@@ -586,7 +586,7 @@ export default function UserDashboard({ onBack, onCreateReport, onLogout }: User
                           whileHover={{ scale: 1.05 }}
                         >
                           <img
-                            src={`http://localhost:5050/api/reports/${selectedReport._id}/photos/${idx}`}
+                            src={`https://project-backend-k3n8.onrender.com/api/reports/${selectedReport._id}/photos/${idx}`}
                             alt={`Photo ${idx + 1}`}
                             className="w-full h-full object-cover"
                             onError={(e) => {

@@ -32,7 +32,7 @@ export default function UserLogin({ onBack, onLoginSuccess, onSwitchToRegister }
     setError('');
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5050';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://project-backend-k3n8.onrender.com';
       const response = await fetch(`${apiUrl}/api/users/login`, {
         method: 'POST',
         headers: {
@@ -89,7 +89,7 @@ export default function UserLogin({ onBack, onLoginSuccess, onSwitchToRegister }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 flex items-center justify-center p-4 sm:p-6">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.05%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       
@@ -110,13 +110,13 @@ export default function UserLogin({ onBack, onLoginSuccess, onSwitchToRegister }
         </motion.button>
 
         {/* Login Card */}
-        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-red-500/20 rounded-full mb-4">
               <UserCheck className="w-8 h-8 text-red-400" />
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">User Login</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">User Login</h1>
             <p className="text-gray-300">Login to report missing person or item</p>
           </div>
 
@@ -145,7 +145,7 @@ export default function UserLogin({ onBack, onLoginSuccess, onSwitchToRegister }
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                  className="w-full pl-12 pr-4 py-3 sm:py-4 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                   placeholder="Enter your email address"
                   required
                 />
@@ -163,7 +163,7 @@ export default function UserLogin({ onBack, onLoginSuccess, onSwitchToRegister }
                   type={showPassword ? 'text' : 'password'}
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="w-full pl-12 pr-12 py-4 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                  className="w-full pl-12 pr-12 py-3 sm:py-4 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                   placeholder="Enter your password"
                   required
                 />
@@ -181,7 +181,7 @@ export default function UserLogin({ onBack, onLoginSuccess, onSwitchToRegister }
             <motion.button
               type="submit"
               disabled={isLoading}
-              className="w-full py-4 bg-red-600 hover:bg-red-700 disabled:bg-red-600/50 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
+              className="w-full py-3 sm:py-4 bg-red-600 hover:bg-red-700 disabled:bg-red-600/50 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
               whileHover={{ scale: isLoading ? 1 : 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

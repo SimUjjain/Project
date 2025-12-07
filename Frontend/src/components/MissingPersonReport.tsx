@@ -77,7 +77,7 @@ export default function MissingPersonReport({ onBack }: MissingPersonReportProps
     photos.forEach(photo => form.append('photos', photo));
 
     // 👇 Add Authorization header with token
-    const res = await fetch('http://localhost:5050/api/reports', {
+    const res = await fetch('https://project-backend-k3n8.onrender.com/api/reports', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token') || ''}`,
@@ -112,7 +112,7 @@ export default function MissingPersonReport({ onBack }: MissingPersonReportProps
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 py-12 px-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 py-8 sm:py-12 px-4 sm:px-6">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.05%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       
@@ -129,16 +129,16 @@ export default function MissingPersonReport({ onBack }: MissingPersonReportProps
 
         <motion.div initial="initial" animate="animate" variants={fadeInUp}>
           {/* Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6 sm:mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-red-500/20 rounded-full mb-4">
               <UserCheck className="w-8 h-8 text-red-400" />
             </div>
-            <h1 className="text-4xl font-bold text-white mb-2">Report Missing Person</h1>
-            <p className="text-xl text-gray-300">Help us locate your loved ones quickly and safely</p>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">Report Missing Person</h1>
+            <p className="text-base sm:text-lg md:text-xl text-gray-300">Help us locate your loved ones quickly and safely</p>
           </div>
 
           {/* Main Form */}
-          <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8">
+          <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-4 sm:p-6 md:p-8">
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Reporter Information */}
               <div>

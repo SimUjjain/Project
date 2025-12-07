@@ -92,7 +92,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
   }
 
   try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5050'}/api/users/register`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://project-backend-k3n8.onrender.com'}/api/users/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -134,7 +134,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 py-12 px-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 py-8 sm:py-12 px-4 sm:px-6">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.05%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       
@@ -155,13 +155,13 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
         </motion.button>
 
         {/* Registration Card */}
-        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-red-500/20 rounded-full mb-4">
               <UserCheck className="w-8 h-8 text-red-400" />
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Create Account</h1>
             <p className="text-gray-300">Register to report missing persons or items</p>
           </div>
 
@@ -197,7 +197,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                 <User className="w-5 h-5 text-red-400" />
                 Personal Information
               </h3>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     Full Name *
@@ -206,7 +206,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                     type="text"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                     placeholder="Enter your full name"
                     required
                   />
@@ -221,7 +221,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                      className="w-full pl-12 pr-4 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                       placeholder="your.email@example.com"
                       required
                     />
@@ -253,7 +253,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                       type="date"
                       value={formData.dateOfBirth}
                       onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
-                      className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                      className="w-full pl-12 pr-4 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                       required
                     />
                   </div>
@@ -267,7 +267,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                     <textarea
                       value={formData.address}
                       onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                      className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all resize-none"
+                      className="w-full pl-12 pr-4 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all resize-none"
                       rows={3}
                       placeholder="Enter your complete address"
                       required
@@ -283,7 +283,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                 <Phone className="w-5 h-5 text-red-400" />
                 Emergency Contact
               </h3>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     Emergency Contact Name *
@@ -292,7 +292,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                     type="text"
                     value={formData.emergencyContact}
                     onChange={(e) => setFormData({ ...formData, emergencyContact: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                     placeholder="Emergency contact name"
                     required
                   />
@@ -305,7 +305,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                     type="tel"
                     value={formData.emergencyPhone}
                     onChange={(e) => setFormData({ ...formData, emergencyPhone: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                     placeholder="+91 XXXXX XXXXX"
                     required
                   />
@@ -319,7 +319,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                 <Lock className="w-5 h-5 text-red-400" />
                 Security Information
               </h3>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     Password *
@@ -330,7 +330,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                       type={showPassword ? 'text' : 'password'}
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                      className="w-full pl-12 pr-12 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                      className="w-full pl-12 pr-12 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                       placeholder="Create a password"
                       required
                       minLength={6}
@@ -354,7 +354,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
                       type={showConfirmPassword ? 'text' : 'password'}
                       value={formData.confirmPassword}
                       onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                      className="w-full pl-12 pr-12 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
+                      className="w-full pl-12 pr-12 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition-all"
                       placeholder="Confirm your password"
                       required
                       minLength={6}
@@ -375,7 +375,7 @@ export default function UserRegistration({ onBack, onRegistrationSuccess, onSwit
             <motion.button
               type="submit"
               disabled={isLoading}
-              className="w-full py-4 bg-red-600 hover:bg-red-700 disabled:bg-red-600/50 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
+              className="w-full py-3 sm:py-4 bg-red-600 hover:bg-red-700 disabled:bg-red-600/50 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
               whileHover={{ scale: isLoading ? 1 : 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

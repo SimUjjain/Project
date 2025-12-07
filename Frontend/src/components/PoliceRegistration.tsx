@@ -62,7 +62,7 @@ export default function PoliceRegistration({ onBack, onRegistrationSuccess, onSw
     }
 
     try {
-      const res = await fetch('http://localhost:5050/api/police/register', {
+      const res = await fetch('https://project-backend-k3n8.onrender.com/api/police/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -90,7 +90,7 @@ export default function PoliceRegistration({ onBack, onRegistrationSuccess, onSw
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 flex items-center justify-center p-4 sm:p-6">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%239C92AC%22 fill-opacity=%220.05%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       
@@ -111,13 +111,13 @@ export default function PoliceRegistration({ onBack, onRegistrationSuccess, onSw
         </motion.button>
 
         {/* Registration Card */}
-        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-500/20 rounded-full mb-4">
               <Shield className="w-8 h-8 text-blue-400" />
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">Police Officer Registration</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Police Officer Registration</h1>
             <p className="text-gray-300">Register for surveillance system access</p>
           </div>
 
@@ -153,7 +153,7 @@ export default function PoliceRegistration({ onBack, onRegistrationSuccess, onSw
                 <User className="w-5 h-5 text-blue-400" />
                 Personal Information
               </h3>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     Full Name *
@@ -177,7 +177,7 @@ export default function PoliceRegistration({ onBack, onRegistrationSuccess, onSw
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                    className="w-full pl-12 pr-4 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
                       placeholder="officer@police.gov.in"
                       required
                     />
@@ -209,7 +209,7 @@ export default function PoliceRegistration({ onBack, onRegistrationSuccess, onSw
                       type="date"
                       value={formData.dateOfJoining}
                       onChange={(e) => setFormData({ ...formData, dateOfJoining: e.target.value })}
-                      className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                    className="w-full pl-12 pr-4 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
                       required
                     />
                   </div>
@@ -223,7 +223,7 @@ export default function PoliceRegistration({ onBack, onRegistrationSuccess, onSw
                 <Badge className="w-5 h-5 text-blue-400" />
                 Official Information
               </h3>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
                     Badge Number *
@@ -337,7 +337,7 @@ export default function PoliceRegistration({ onBack, onRegistrationSuccess, onSw
                       type={showPassword ? 'text' : 'password'}
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                      className="w-full pl-12 pr-12 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                      className="w-full pl-12 pr-12 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
                       placeholder="Create a strong password"
                       required
                       minLength={8}
@@ -361,7 +361,7 @@ export default function PoliceRegistration({ onBack, onRegistrationSuccess, onSw
                       type={showConfirmPassword ? 'text' : 'password'}
                       value={formData.confirmPassword}
                       onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                      className="w-full pl-12 pr-12 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                      className="w-full pl-12 pr-12 py-3 sm:py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
                       placeholder="Confirm your password"
                       required
                       minLength={8}
@@ -382,7 +382,7 @@ export default function PoliceRegistration({ onBack, onRegistrationSuccess, onSw
             <motion.button
               type="submit"
               disabled={isLoading}
-              className="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-600/50 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
+              className="w-full py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-600/50 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
               whileHover={{ scale: isLoading ? 1 : 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

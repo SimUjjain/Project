@@ -30,6 +30,7 @@ import {
   Image as ImageIcon,
   UserCheck
 } from 'lucide-react';
+import Hls from 'hls.js';
 
 interface DashboardProps {
   onLogout: () => void;
@@ -131,7 +132,9 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
   const [cases, setCases] = useState<MissingCase[]>([]);
   const [selectedCase, setSelectedCase] = useState<MissingCase | null>(null);
 
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5050';
+  const apiUrl = import.meta.env.VITE_API_URL || 'https://project-backend-k3n8.onrender.com';
+
+  const peopleVideoRef = useRef<HTMLVideoElement | null>(null);
 
   const [statusModalCase, setStatusModalCase] = useState<MissingCase | null>(null);
 
@@ -353,6 +356,20 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
     };
   }, [apiUrl]);
 
+  useEffect(() => {
+    const src = `${apiUrl}/hls/people/index.m3u8`;
+    const video = peopleVideoRef.current;
+    if (!video) return;
+    if (video.canPlayType('application/vnd.apple.mpegURL')) {
+      video.src = src;
+      video.play().catch(() => {});
+    } else if (Hls.isSupported()) {
+      const hls = new Hls({ liveSyncDurationCount: 3 });
+      hls.loadSource(src);
+      hls.attachMedia(video);
+    }
+  }, [apiUrl]);
+
 
 
   const stats = [
@@ -404,7 +421,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
       <div className="relative z-10">
         {/* Header */}
         <header className="bg-white/10 backdrop-blur-xl border-b border-white/20">
-          <div className="container mx-auto px-6 py-4">
+          <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-3">
@@ -441,8 +458,8 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
         </header>
 
         {/* Navigation Tabs */}
-        <div className="container mx-auto px-6 py-6">
-                    <div className="flex gap-2 mb-8">
+        <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6">
+                    <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
             {[
               { id: 'overview', label: 'Overview', icon: <Activity className="w-4 h-4" /> },
               { id: 'cases', label: 'Cases', icon: <FileText className="w-4 h-4" /> },
@@ -452,7 +469,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
               <motion.button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
+                className={`flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all ${
                   activeTab === tab.id
                     ? 'bg-blue-500/30 text-white border border-blue-400/50'
                     : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10'
@@ -484,11 +501,11 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                 className="space-y-8"
               >
                 {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                   {stats.map((stat, index) => (
                     <motion.div
                       key={index}
-                      className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6"
+                      className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -508,9 +525,9 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                 </div>
 
                 {/* Recent Activity */}
-                <div className="grid lg:grid-cols-2 gap-8">
+                <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
                   {/* Recent Cases */}
-                  <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+                  <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6">
                     <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
                       <FileText className="w-5 h-5 text-blue-400" />
                       Recent Cases
@@ -541,7 +558,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                   </div>
 
                   {/* Live Alerts */}
-                  <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+                  <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6">
                     <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
                       <Zap className="w-5 h-5 text-yellow-400" />
                       Live Alerts
@@ -579,7 +596,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                 className="space-y-6"
               >
                 {/* Search and Filter */}
-                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6">
                   <div className="flex flex-col md:flex-row gap-4">
                     <div className="flex-1 relative">
                       <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -591,7 +608,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                         placeholder="Search cases by name or ID..."
                       />
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex flex-wrap gap-2 sm:gap-4">
                       <select
                         value={filterStatus}
                         onChange={(e) => setFilterStatus(e.target.value as any)}
@@ -721,19 +738,25 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                 transition={{ duration: 0.3 }}
                 className="space-y-6"
               >
-                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6">
                   <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                     <Monitor className="w-6 h-6 text-blue-400" />
                     Live Surveillance Feed
                   </h3>
                   
                   {/* Camera Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {[1, 2, 3, 4, 5, 6].map((camera) => (
                       <div key={camera} className="bg-white/5 rounded-xl p-4">
-                        <div className="aspect-video bg-gray-800 rounded-lg mb-3 flex items-center justify-center">
-                          <Camera className="w-12 h-12 text-gray-600" />
-                        </div>
+                        {camera === 1 ? (
+                          <div className="aspect-video rounded-lg overflow-hidden mb-3 bg-black flex">
+                            <video ref={peopleVideoRef} className="w-full h-full" muted playsInline controls />
+                          </div>
+                        ) : (
+                          <div className="aspect-video bg-gray-800 rounded-lg mb-3 flex items-center justify-center">
+                            <Camera className="w-12 h-12 text-gray-600" />
+                          </div>
+                        )}
                         <div className="flex items-center justify-between">
                           <div>
                             <h4 className="text-sm font-medium text-white">Camera #{camera.toString().padStart(2, '0')}</h4>
@@ -761,7 +784,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                 transition={{ duration: 0.3 }}
                 className="space-y-6"
               >
-                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 sm:p-6">
                   <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                     <Bell className="w-6 h-6 text-yellow-400" />
                     Real-time Alerts
@@ -771,7 +794,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                     {alerts.map((alert) => (
                       <motion.div
                         key={alert.id}
-                        className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all cursor-pointer"
+                        className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all cursor-pointer"
                         whileHover={{ scale: 1.01 }}
                       >
                         <div className="flex-shrink-0 mt-1">
@@ -898,7 +921,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-gray-900 border border-white/20 rounded-3xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-gray-900 border border-white/20 rounded-3xl p-4 sm:p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
             >
               {/* Modal Header */}
               <div className="flex items-center justify-between mb-6">
@@ -1041,7 +1064,7 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                           /> */}
                           <img
                             //src={`${import.meta.env.VITE_API_URL || 'http://localhost:5050'}/api/reports/${selectedCase.fullData._id}/photos/${idx}`}
-                            src={`${import.meta.env.VITE_API_URL || 'http://localhost:5050'}/api/reports/${selectedCase!.fullData!._id}/photos/${idx}`}
+                            src={`${import.meta.env.VITE_API_URL || 'https://project-backend-k3n8.onrender.com'}/api/reports/${selectedCase!.fullData!._id}/photos/${idx}`}
 
                             alt={`Photo ${idx + 1}`}
                             className="w-full h-full object-cover"
