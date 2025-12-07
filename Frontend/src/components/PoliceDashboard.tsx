@@ -384,6 +384,10 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                          case_.id.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = filterStatus === 'all' || case_.status === filterStatus;
     return matchesSearch && matchesFilter;
+  }).sort((a, b) => {
+    const ad = a.fullData?.createdAt || a.fullData?.lastSeenTime || '';
+    const bd = b.fullData?.createdAt || b.fullData?.lastSeenTime || '';
+    return new Date(bd).getTime() - new Date(ad).getTime();
   });
 
   const getStatusColor = (status: string) => {
@@ -533,7 +537,15 @@ export default function PoliceDashboard({ onLogout }: DashboardProps) {
                       Recent Cases
                     </h3>
                     <div className="space-y-4">
-                      {cases.slice(0, 3).map((case_) => (
+                  {[...cases]
+                    .filter(c => c.status === 'active')
+                    .sort((a, b) => {
+                      const ad = a.fullData?.createdAt || a.fullData?.lastSeenTime || '';
+                      const bd = b.fullData?.createdAt || b.fullData?.lastSeenTime || '';
+                      return new Date(bd).getTime() - new Date(ad).getTime();
+                    })
+                    .slice(0, 3)
+                    .map((case_) => (
                         <div key={case_.id} className="flex items-center gap-4 p-4 bg-white/5 rounded-xl">
                           <div className="flex-shrink-0">
                             {case_.type === 'person' ? (
